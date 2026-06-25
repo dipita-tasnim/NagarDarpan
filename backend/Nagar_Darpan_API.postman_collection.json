@@ -1,0 +1,520 @@
+{
+  "info": {
+    "_postman_id": "nagar-darpan-api",
+    "name": "Nagar Darpan API Collection",
+    "description": "Complete REST API collection for Problem Reporting & Tracking System",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Area Hierarchy",
+      "item": [
+        {
+          "name": "Create Division",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code === 201) {",
+                  "    var jsonData = pm.response.json();",
+                  "    if (jsonData.data && jsonData.data._id) {",
+                  "        pm.environment.set('division_id', jsonData.data._id);",
+                  "        console.log('Auto-set division_id:', jsonData.data._id);",
+                  "    }",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\": \"Barishal\", \"code\": \"BAR\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/divisions",
+              "protocol": "http",
+              "host": ["127.0.0.1"],
+              "port": "1396",
+              "path": ["api", "divisions"]
+            }
+          }
+        },
+        {
+          "name": "Get All Divisions",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "    var jsonData = pm.response.json();",
+                  "    if (jsonData.data && jsonData.data.length > 0) {",
+                  "        pm.environment.set('division_id', jsonData.data[0]._id);",
+                  "        console.log('Auto-set division_id:', jsonData.data[0]._id);",
+                  "    }",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/divisions",
+              "protocol": "http",
+              "host": ["127.0.0.1"],
+              "port": "1396",
+              "path": ["api", "divisions"]
+            }
+          }
+        },
+        {
+          "name": "Create District",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code === 201) {",
+                  "    var jsonData = pm.response.json();",
+                  "    if (jsonData.data && jsonData.data._id) {",
+                  "        pm.environment.set('district_id', jsonData.data._id);",
+                  "        console.log('Auto-set district_id:', jsonData.data._id);",
+                  "    }",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\": \"Gazipur\", \"code\": \"GAZ-01\", \"division\": \"{{division_id}}\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/districts",
+              "protocol": "http",
+              "host": ["127.0.0.1"],
+              "port": "1396",
+              "path": ["api", "districts"]
+            }
+          }
+        },
+        {
+          "name": "Get Districts by Division",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "    var jsonData = pm.response.json();",
+                  "    if (jsonData.data && jsonData.data.length > 0) {",
+                  "        pm.environment.set('district_id', jsonData.data[0]._id);",
+                  "        console.log('Auto-set district_id:', jsonData.data[0]._id);",
+                  "    }",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/districts/{{division_id}}",
+              "protocol": "http",
+              "host": ["127.0.0.1"],
+              "port": "1396",
+              "path": ["api", "districts", "{{division_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Create Thana",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code === 201) {",
+                  "    var jsonData = pm.response.json();",
+                  "    if (jsonData.data && jsonData.data._id) {",
+                  "        pm.environment.set('thana_id', jsonData.data._id);",
+                  "        console.log('Auto-set thana_id:', jsonData.data._id);",
+                  "    }",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\": \"Sreepur\", \"code\": \"SREE-01\", \"district\": \"{{district_id}}\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/thanas",
+              "protocol": "http",
+              "host": ["127.0.0.1"],
+              "port": "1396",
+              "path": ["api", "thanas"]
+            }
+          }
+        },
+        {
+          "name": "Get Thanas by District",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "    var jsonData = pm.response.json();",
+                  "    if (jsonData.data && jsonData.data.length > 0) {",
+                  "        pm.environment.set('thana_id', jsonData.data[0]._id);",
+                  "        console.log('Auto-set thana_id:', jsonData.data[0]._id);",
+                  "    }",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/thanas/{{district_id}}",
+              "protocol": "http",
+              "host": ["127.0.0.1"],
+              "port": "1396",
+              "path": ["api", "thanas", "{{district_id}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Feature 1 - Problem Reporting",
+      "item": [
+        {
+          "name": "Create Problem Report (Without Image)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code === 201) {",
+                  "    var jsonData = pm.response.json();",
+                  "    if (jsonData.data) {",
+                  "        pm.environment.set('problem_id', jsonData.data.problem._id);",
+                  "        pm.environment.set('reference_number', jsonData.data.referenceNumber);",
+                  "        console.log('Auto-set problem_id:', jsonData.data.problem._id);",
+                  "        console.log('Auto-set reference_number:', jsonData.data.referenceNumber);",
+                  "    }",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"title\": \"Severe Pothole on Main Road\", \"description\": \"There is a large pothole near the traffic light that is causing safety issues for vehicles and motorcycles\", \"category\": \"Road Damage\", \"division\": \"Dhaka\", \"district\": \"Dhaka City\", \"thana\": \"Dhanmondi\", \"userName\": \"Ahmed Khan\", \"userEmail\": \"ahmed@example.com\", \"userPhone\": \"+8801712345678\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/problems",
+              "protocol": "http",
+              "host": ["127.0.0.1"],
+              "port": "1396",
+              "path": ["api", "problems"]
+            }
+          }
+        },
+        {
+          "name": "Create Problem Report with Image",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code === 201) {",
+                  "    var jsonData = pm.response.json();",
+                  "    if (jsonData.data) {",
+                  "        pm.environment.set('problem_id', jsonData.data.problem._id);",
+                  "        pm.environment.set('reference_number', jsonData.data.referenceNumber);",
+                  "        console.log('Auto-set problem_id:', jsonData.data.problem._id);",
+                  "        console.log('Auto-set reference_number:', jsonData.data.referenceNumber);",
+                  "    }",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "title",
+                  "value": "Water Supply Issue in Gulshan Area",
+                  "type": "text"
+                },
+                {
+                  "key": "description",
+                  "value": "Water supply has been disrupted for 3 days. No water in residential area",
+                  "type": "text"
+                },
+                {
+                  "key": "category",
+                  "value": "Water Supply",
+                  "type": "text"
+                },
+                {
+                  "key": "division",
+                  "value": "Dhaka",
+                  "type": "text"
+                },
+                {
+                  "key": "district",
+                  "value": "Dhaka City",
+                  "type": "text"
+                },
+                {
+                  "key": "thana",
+                  "value": "Gulshan",
+                  "type": "text"
+                },
+                {
+                  "key": "userName",
+                  "value": "Fatima Begum",
+                  "type": "text"
+                },
+                {
+                  "key": "userEmail",
+                  "value": "fatima@example.com",
+                  "type": "text"
+                },
+                {
+                  "key": "userPhone",
+                  "value": "+8801912345678",
+                  "type": "text"
+                },
+                {
+                  "key": "image",
+                  "type": "file",
+                  "src": ""
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/problems",
+              "protocol": "http",
+              "host": ["127.0.0.1"],
+              "port": "1396",
+              "path": ["api", "problems"]
+            }
+          }
+        },
+        {
+          "name": "Get All Problems",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/problems?page=1&limit=10",
+              "host": ["127.0.0.1"],
+              "port": "1396",
+              "path": ["api", "problems"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "key": "category",
+                  "value": "Road Damage",
+                  "disabled": true
+                },
+                {
+                  "key": "status",
+                  "value": "Acknowledged",
+                  "disabled": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Problem by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/problems/{{problem_id}}",
+              "protocol": "http",
+              "host": ["127.0.0.1"],
+              "port": "1396",
+              "path": ["api", "problems", "{{problem_id}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Feature 2 - Issue Tracking",
+      "item": [
+        {
+          "name": "Get Problem by Reference Number",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/problems/reference/{{reference_number}}",
+              "protocol": "http",
+              "host": ["127.0.0.1"],
+              "port": "1396",
+              "path": ["api", "problems", "reference", "{{reference_number}}"]
+            }
+          }
+        },
+        {
+          "name": "Get Problem Current Status",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/problems/{{problem_id}}/status",
+              "protocol": "http",
+              "host": ["127.0.0.1"],
+              "port": "1396",
+              "path": ["api", "problems", "{{problem_id}}", "status"]
+            }
+          }
+        },
+        {
+          "name": "Get Problem Timeline & History",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/problems/{{problem_id}}/timeline",
+              "protocol": "http",
+              "host": ["127.0.0.1"],
+              "port": "1396",
+              "path": ["api", "problems", "{{problem_id}}", "timeline"]
+            }
+          }
+        },
+        {
+          "name": "Update Problem Status",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"status\": \"In Progress\", \"notes\": \"Field team assigned for inspection\"}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/problems/{{problem_id}}/status",
+              "protocol": "http",
+              "host": ["127.0.0.1"],
+              "port": "1396",
+              "path": ["api", "problems", "{{problem_id}}", "status"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/health",
+          "protocol": "http",
+          "host": ["127.0.0.1"],
+          "port": "1396",
+          "path": ["health"]
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://127.0.0.1:1396"
+    },
+    {
+      "key": "division_id",
+      "value": ""
+    },
+    {
+      "key": "district_id",
+      "value": ""
+    },
+    {
+      "key": "thana_id",
+      "value": ""
+    },
+    {
+      "key": "problem_id",
+      "value": ""
+    },
+    {
+      "key": "reference_number",
+      "value": ""
+    }
+  ]
+}
