@@ -20,11 +20,16 @@ const app = express();
 connectDB();
 
 // Middleware
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://nagardarpan.vercel.app',        // current production domain
+  'https://nagar-darpan-lq81.vercel.app',  // legacy domain (still redirects)
+  /^https:\/\/nagardarpan-.*\.vercel\.app$/, // Vercel preview deployments
+];
+if (process.env.CLIENT_URL) allowedOrigins.push(process.env.CLIENT_URL);
+
 app.use(cors({
-  origin: [
-    'http://localhost:5173',
-    'https://nagar-darpan-lq81.vercel.app'
-  ]
+  origin: allowedOrigins,
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

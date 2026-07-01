@@ -4,7 +4,7 @@ NagarDarpan is a civic problem reporting and accountability platform for Banglad
 
 ## Demo
 
-- **Live app:** https://nagar-darpan-lq81.vercel.app
+- **Live app:** https://nagardarpan.vercel.app
 - **Video walkthrough:** https://drive.google.com/file/d/1ODdpSpciu7BE4S-4QTKQMrzyjZLo2KSi/view?usp=sharing
 
 You can **sign up** to create your own account, or use the public demo account below to report and track issues without registering. *(Admin-only features such as moderation and fraud detection are demonstrated in the video walkthrough.)*
