@@ -11,7 +11,7 @@ You can **sign up** to create your own account, or use the public demo account b
 
 | Demo account (citizen) | Password   |
 |:-----------------------|:-----------|
-| `demo@nagardarpan.com` | `demo1234` |
+| `demo@gmail.com` | `demo123` |
 
 ## Functional Requirements:
 
